@@ -1,0 +1,196 @@
+@font-face {
+  font-family: 'Spicy Sale';
+  src: url('../fonts/Spicy Sale.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Moodcake';
+  src: url('../fonts/Moodcake-5yz4B.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bg-color {
+  background-color: #ffedff;
+}
+
+label {
+  font-family: "Moodcake";
+  color: violet;
+}
+
+h1 {
+  color: violet;
+  font-size: 100px;
+  font-family: "Spicy Sale";
+  text-align: center;
+  text-shadow: 8px 5px 5px rgb(205, 0, 154);
+}
+
+section {
+  background: #fda9de;
+}
+
+column {
+  min-height: 750px;
+}
+
+button {
+  border-width: 2px;
+  border-radius: 10px;
+  border-style: solid;
+  padding: 3px;
+  font-family: "Moodcake";
+  font-size: 22px;
+}
+
+.task {
+  background-color: #8a96e8;
+  padding: 4px;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+#delete-button {
+
+  margin-left: auto;
+}
+
+
+
+
+
+/* TO DO */
+
+.toDo {
+  background: #fffbe8;
+}
+
+.toDo-text {
+  color: #ffed87;
+  font-size: 60px;
+  text-shadow: 8px 5px 5px #806d00;
+}
+
+.toDo-border {
+  border-color: #806d00;
+}
+
+.button-add-toDo {
+  background-color: #ffed87;
+  border-color: #806d00;
+  color: #806d00;
+}
+
+.button-add-toDo:hover {
+  background-color: #ffde21;
+}
+
+
+
+
+
+/* DOING */
+
+.doing {
+  background: #d1ffe2;
+}
+
+.doing-text {
+  color: #84e184;
+  font-size: 60px;
+  text-shadow: 8px 5px 5px rgb(0, 99, 25);
+}
+
+.doing-border {
+  border-color: rgb(0, 99, 25);
+}
+
+.button-add-doing {
+  color: rgb(0, 99, 25);
+  border-color: rgb(0, 99, 25);
+  background-color: #84e184;
+}
+
+.button-add-doing:hover {
+  background-color: #3cda3c;
+}
+
+
+
+
+
+/* DONE */
+
+.done {
+  background: #dfe3ff;
+}
+
+.done-text {
+  color: #7e90ff;
+  font-size: 60px;
+  text-shadow: 8px 5px 5px #01106f;
+}
+
+.done-border {
+  border-color: #01106f;
+}
+
+.button-add-done {
+  color: #01106f;
+  border-color: #01106f;
+  background-color: #7e90ff;
+}
+
+.button-add-done:hover {
+  background-color: #3651ff;
+}
+
+
+
+
+
+/* COLORES */
+
+#color-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background-color: blue;
+  margin-left: auto;
+  margin-right: 2px;
+}
+
+.blue {
+  background-color: #0000FF;
+}
+
+.cornflowerblue {
+  background-color: #6495ED;
+}
+
+.darkseagreen {
+  background-color: #8FBC8F;
+}
+
+.coral {
+  background-color: #FF7F50;
+}
+
+.blueviolet {
+  background-color: #8A2BE2;
+}
+
+.brown {
+  background-color: #A52A2A;
+}
+
+.gold {
+  background-color: #FFD700;
+}
+
