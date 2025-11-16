@@ -71,49 +71,21 @@
 
 
 
-    <!-- Modal añadir -->
+    <!-- MODALES -->
 
-    <div class="modal fade" id="add-modal">
-        <div class="modal-dialog">
-            <div class="modal-content bg-color">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-2" id="exampleModalLabel">Crear Tarea</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="title" class="col-form-label">Titulo</label>
-                            <input type="text" class="form-control" id="title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="col-form-label">Descripcion</label>
-                            <textarea class="form-control" id="description"></textarea>
-                        </div>
-                        <div class="mb-3 d-flex flex-wrap align-items-center">
-                            <label for="color" class="col-12 mb-2">Color</label>
-                            <div class="col-10">
-                                <select class="form-control" id="color">
-                                    <option value="blue">Azul</option>
-                                    <option value="cornflowerblue">Azul claro</option>
-                                    <option value="darkseagreen">Verde</option>
-                                    <option value="coral">Naranja</option>
-                                    <option value="blueviolet">Morado</option>
-                                    <option value="brown">Marrón</option>
-                                    <option value="gold">Amarillo</option>
-                                </select>
-                            </div>
-                            <div id="color-circle" class="blue"></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="create-button" class="btn btn-primary">Crear</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+    // Modal crear task
+    include_once "../components/modalCreateTask.html";
+    
+    // Notificacion Campos incompletos
+    include_once "../components/notificationIncompleteInput.html";
+    
+    // Notificacion Tarea Creada
+    include_once "../components/notificationCreateTask.html";
+    
+    // Notificacion Tarea Eliminada
+    include_once "../components/notificationDeleteTask.html";
+    ?>
 </body>
 
 <script src="../js/index.js"></script>
