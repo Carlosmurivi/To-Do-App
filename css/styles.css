@@ -55,7 +55,7 @@ button {
   border-color: black;
 }
 
-#delete-button {
+.delete-button {
   margin-left: auto;
 }
 
