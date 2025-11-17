@@ -59,7 +59,7 @@ button {
   margin-left: auto;
 }
 
-#create-button {
+#create-button, #update-button, #confirm-delete-btn {
   background-color: #90ee90;
   border-color: #116E11;
   border-radius: 10px;
@@ -169,7 +169,7 @@ button {
 
 /* COLORES */
 
-#color-circle {
+#color-circle, #color-circle-update {
   width: 50px;
   height: 50px;
   border-radius: 50%;

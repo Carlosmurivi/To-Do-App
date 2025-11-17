@@ -2,20 +2,21 @@ const toDoList = document.getElementById("toDoList");
 const doingList = document.getElementById("doingList");
 const doneList = document.getElementById("doneList");
 const colorSelect = document.getElementById("color");
+const colorSelectUpdate = document.getElementById("color-update");
 
 const toDoAdd = document.getElementById("add-toDo");
 const doingAdd = document.getElementById("add-doing");
 const doneAdd = document.getElementById("add-done");
 const createButton = document.getElementById("create-button");
+const updateButton = document.getElementById("update-button");
 
 const createModal = new bootstrap.Modal(document.getElementById("add-modal"));
+const updateModal = new bootstrap.Modal(document.getElementById("update-modal"));
 const confirmDeleteModal = new bootstrap.Modal(document.getElementById("confirmDeleteModal"));
-const notificationIncompleteInput = document.getElementById("notificationIncompleteInput");
-const notificationIncompleteInputToast = new bootstrap.Toast(notificationIncompleteInput);
-const notificationCreateTask = document.getElementById("notificationCreateTask");
-const notificationCreateTaskToast = new bootstrap.Toast(notificationCreateTask);
-const notificationDeleteTask = document.getElementById("notificationDeleteTask");
-const notificationDeleteTaskToast = new bootstrap.Toast(notificationDeleteTask);
+const notificationIncompleteInputToast = new bootstrap.Toast(document.getElementById("notificationIncompleteInput"));
+const notificationCreateTaskToast = new bootstrap.Toast(document.getElementById("notificationCreateTask"));
+const notificationDeleteTaskToast = new bootstrap.Toast(document.getElementById("notificationDeleteTask"));
+const notificationUpdateTaskToast = new bootstrap.Toast(document.getElementById("notificationUpdateTask"));
 
 console.log(JSON.parse(localStorage.getItem("tasks")));
 let tasks = (localStorage.getItem("tasks")) ? JSON.parse(localStorage.getItem("tasks")) : [];
@@ -61,6 +62,27 @@ createButton.addEventListener("click", () => {
 });
 
 
+updateButton.addEventListener("click", () => {
+    task = new Task(
+        document.getElementById("title-update").value,
+        document.getElementById("description-update").value,
+        document.getElementById("color-update").value,
+        getTaskById(document.getElementById("id-update").value).columna,
+        document.getElementById("id-update").value
+    );
+
+    updateModal.hide();
+
+    updateTask(task);
+
+    document.getElementById(task.columna).innerHTML = "";
+
+    tasks.forEach(t => {(t.columna == task.columna) ? paintingTask(t) : ""});
+
+    notificationUpdateTaskToast.show();
+});
+
+
 // Pintar tarea
 function paintingTask(task) {
     const wrapper = document.createElement("div");
@@ -84,15 +106,24 @@ function paintingTask(task) {
     `;
 
     // Eliminar tarea
-    deleteButton.addEventListener("click", () => {
+    deleteButton.addEventListener("click", (e) => {
+        e.stopPropagation(); // 🔑 evita que se dispare el click del task
         deleteTask(task, wrapper);
+    });
+
+    // Mostrar modal al clicar sobre la tarea
+    taskDiv.addEventListener("click", () => {
+        updateModal.show();
+        document.getElementById("id-update").value = task.id;
+        document.getElementById("title-update").value = task.title;
+        document.getElementById("description-update").value = task.description;
+        document.getElementById("color-update").value = task.color;
+        document.getElementById("color-circle-update").style.backgroundColor = task.color;
     });
 
     taskDiv.appendChild(h4);
     taskDiv.appendChild(deleteButton);
     wrapper.appendChild(taskDiv);
-
-
 
     document.getElementById(task.columna).appendChild(wrapper);
 }
@@ -104,13 +135,42 @@ colorSelect.addEventListener("input", () => {
 
     circulo.style.backgroundColor = colorSelect.value;
 });
+colorSelectUpdate.addEventListener("input", () => {
+    let circulo = document.getElementById("color-circle-update");
+
+    circulo.style.backgroundColor = colorSelectUpdate.value;
+});
 
 
 // Añadir a localStorage una tarea
 function saveTask(task) {
     tasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    console.log(localStorage.getItem("tasks"));
+}
+
+
+// Actualizar tarea en el localStorage
+function updateTask(task) {
+    for (let t of tasks) {
+        if (t.id === task.id) {
+            t.title = task.title;
+            t.description = task.description;
+            t.color = task.color;
+            t.columna = task.columna;
+            break; // ya lo encontramos, salimos
+        }
+    }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+
+// Obtener tarea por id del localStorage
+function getTaskById(id) {
+    for (let t of tasks) {
+        if (t.id == id) {
+            return t;
+        }
+    }
 }
 
 
@@ -118,7 +178,7 @@ function saveTask(task) {
 function deleteTask(task, wrapper) {
     confirmDeleteModal.show();
 
-    const confirmBtn = document.getElementById("confirmDeleteBtn");
+    const confirmBtn = document.getElementById("confirm-delete-btn");
 
     confirmBtn.onclick = () => {
         tasks = tasks.filter(t => t.id !== task.id);

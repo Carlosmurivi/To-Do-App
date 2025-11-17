@@ -80,6 +80,9 @@
     // Modal eliminar task
     include_once "../components/modalDeleteTask.html";
     
+    // Modal editar task
+    include_once "../components/modalUpdateTask.html";
+    
     // Notificacion Campos incompletos
     include_once "../components/notificationIncompleteInput.html";
     
@@ -88,12 +91,12 @@
     
     // Notificacion Tarea Eliminada
     include_once "../components/notificationDeleteTask.html";
+    
+    // Notificacion Tarea Actualizada
+    include_once "../components/notificationUpdateTask.html";
     ?>
 </body>
-<!-- 
-- Funcionalidad de modificar una tarea
-- Poder mover las tareas de columna
--->
+
 <script src="../modelo/Task.js"></script>
 <script src="../js/index.js"></script>
 
