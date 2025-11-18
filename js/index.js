@@ -18,9 +18,8 @@ const notificationCreateTaskToast = new bootstrap.Toast(document.getElementById(
 const notificationDeleteTaskToast = new bootstrap.Toast(document.getElementById("notificationDeleteTask"));
 const notificationUpdateTaskToast = new bootstrap.Toast(document.getElementById("notificationUpdateTask"));
 
-console.log(JSON.parse(localStorage.getItem("tasks")));
+const columns = ["toDoList", "doingList", "doneList"];
 let tasks = (localStorage.getItem("tasks")) ? JSON.parse(localStorage.getItem("tasks")) : [];
-console.log(tasks);
 let columna = null;
 
 toDoAdd.addEventListener("click", () => {
@@ -77,7 +76,7 @@ updateButton.addEventListener("click", () => {
 
     document.getElementById(task.columna).innerHTML = "";
 
-    tasks.forEach(t => {(t.columna == task.columna) ? paintingTask(t) : ""});
+    tasks.forEach(t => { (t.columna == task.columna) ? paintingTask(t) : "" });
 
     notificationUpdateTaskToast.show();
 });
@@ -124,6 +123,11 @@ function paintingTask(task) {
     taskDiv.appendChild(h4);
     taskDiv.appendChild(deleteButton);
     wrapper.appendChild(taskDiv);
+
+    wrapper.setAttribute("draggable", "true");
+    wrapper.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", task.id);
+    });
 
     document.getElementById(task.columna).appendChild(wrapper);
 }
@@ -188,3 +192,28 @@ function deleteTask(task, wrapper) {
         notificationDeleteTaskToast.show();
     };
 }
+
+
+// Eventos de las columnas para mover las tareas
+columns.forEach(colId => {
+    const col = document.getElementById(colId);
+
+    col.addEventListener("dragover", (e) => {
+        e.preventDefault();
+    });
+
+    col.addEventListener("drop", (e) => {
+        e.preventDefault();
+        const taskId = e.dataTransfer.getData("text/plain");
+        const taskElement = document.querySelector(`[id-task="${taskId}"]`);
+        if (taskElement) {
+            col.appendChild(taskElement);
+
+            const task = tasks.find(t => t.id === taskId);
+            if (task) {
+                task.columna = colId;
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+            }
+        }
+    });
+});

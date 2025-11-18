@@ -28,7 +28,7 @@
                     <button id="add-toDo" class="col-12 button button-add-toDo" data-bs-toggle="modal"
                         data-bs-target="#add-modal">Agregar</button>
                 </div>
-                <list id="toDoList" class="col-12 p-2"></list>
+                <ul id="toDoList" class="h-75 col-12 p-2"></ul>
             </div>
         </column>
 
@@ -45,7 +45,7 @@
                     <button id="add-doing" class="col-12 button button-add-doing" data-bs-toggle="modal"
                         data-bs-target="#add-modal">Agregar</button>
                 </div>
-                <list id="doingList" class="col-12 p-2"></list>
+                <ul id="doingList" class="h-75 col-12 p-2"></ul>
             </div>
         </column>
 
@@ -62,7 +62,7 @@
                     <button id="add-done" class="col-12 button button-add-done" data-bs-toggle="modal"
                         data-bs-target="#add-modal">Agregar</button>
                 </div>
-                <list id="doneList" class="col-12 p-2"></list>
+                <ul id="doneList" class="h-75 col-12 p-2"></ul>
             </div>
         </column>
     </section>
@@ -76,27 +76,26 @@
     <?php
     // Modal crear task
     include_once "../components/modalCreateTask.html";
-    
+
     // Modal eliminar task
     include_once "../components/modalDeleteTask.html";
-    
+
     // Modal editar task
     include_once "../components/modalUpdateTask.html";
-    
+
     // Notificacion Campos incompletos
     include_once "../components/notificationIncompleteInput.html";
-    
+
     // Notificacion Tarea Creada
     include_once "../components/notificationCreateTask.html";
-    
+
     // Notificacion Tarea Eliminada
     include_once "../components/notificationDeleteTask.html";
-    
+
     // Notificacion Tarea Actualizada
     include_once "../components/notificationUpdateTask.html";
     ?>
 </body>
-
 <script src="../modelo/Task.js"></script>
 <script src="../js/index.js"></script>
 
